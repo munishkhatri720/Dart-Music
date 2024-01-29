@@ -1,5 +1,6 @@
 import { Listener , Events } from "@sapphire/framework";
 import { Client } from "discord.js";
+import { Dart } from "../../client/Dart";
 
 
 export class ReadyListener extends Listener {
@@ -11,9 +12,10 @@ export class ReadyListener extends Listener {
     });
   }
 
-    public run(client : Client){
-        const {tag} = client.user!;
-        this.container.logger.debug(`Logged in as ${tag}`);
+    public run(client : Dart){
+      client.moon.init(client.user!.id);
+      const {tag} = client.user!;
+      this.container.logger.info(`Logged in as ${tag}`);
     }
 
 }
